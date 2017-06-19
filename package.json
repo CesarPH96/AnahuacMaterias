@@ -1,17 +1,21 @@
 {
   "name": "anahuac-materias",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "App que calcula el promedio de materias que metiste en el semestre",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-	"start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	  "start": "node app.js"
   },
   "keywords": [
-    "Nodejs",
+    "NodeJs",
     "Express",
     "MongoDB"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CesarPH96/AnahuacMaterias"
+  },
   "author": "César Palazuelos Higuera",
   "license": "MIT",
   "dependencies": {
