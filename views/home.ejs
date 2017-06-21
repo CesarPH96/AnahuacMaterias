@@ -1,1 +1,41 @@
-<h1>Home Page</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Anahuac Materias: Inicio</title>
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <h1>Home Page</h1>
+
+      <% semesters.forEach(function(semester){ %>
+        <ul>
+          <li class="semester "><%= semester.name %></li>
+          <ul class="collapse">
+          <% courses.forEach(function(course){ %>
+            <li class="courses"><%= course.name %></li>
+            <table class="collapse">
+              <thead>
+                <tr>
+                  <th>Atributo</th>
+                  <th>Porcentaje</th>
+                  <th>Calificación</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% metrics.forEach(function(metric){ %>
+                  <tr class="metric">
+                    <th><%= metric.name %></th>
+                    <th><%= metric.porcentage %></th>
+                    <th><%= metric.grade %></th>
+                  </tr>
+                <% }); %>
+            </tbody>
+          </table>
+          <% }); %>
+          </ul>
+        </ul>
+    <%   }); %>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
+</html>
