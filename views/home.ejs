@@ -46,7 +46,7 @@
               </li>
               <ul class="collapse panel-body">
               <div class="row">
-                <% courses.forEach(function(course){ %>
+                <% semester.courses.forEach(function(course){ %>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                       <div class="panel panel-default ">
                         <li class="courses panel-heading">
@@ -58,13 +58,13 @@
                         <table class="collapse table table-striped table-bordered table-responsive">
                           <thead>
                             <tr>
-                              <th>Criterio</th>
+                              <th>Atributo</th>
                               <th>%</th>
                               <th>Calificación</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <% metrics.forEach(function(metric){ %>
+                            <% course.metrics.forEach(function(metric){ %>
                               <tr class="metric">
                                 <td><%= metric.name %></td>
                                 <td><%= metric.porcentage %></td>
