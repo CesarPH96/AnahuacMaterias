@@ -10,8 +10,11 @@ var data = [
   {
     name: "Semestre 2"
   },
+  {
+    name: "Semestre 3"
+  }
 ];
-
+var porc = [30, 40, 30];
 function seedDB(){
   //remove all campgrounds
   Semester.remove({}, function(err){
@@ -20,7 +23,7 @@ function seedDB(){
     }
     console.log("removed semesters");
     //add a few campgrounds
-    data.forEach(function(seed){
+    data.forEach(function(seed, i){
       Semester.create(seed, function(err, semester){
         if(err){
           console.log(err);
@@ -36,21 +39,17 @@ function seedDB(){
                             }else{
                               Metric.remove({}, function(err){
                                 Metric.create({
-                                                name: "Examen 1",
-                                                porcentage: 30,
-                                                grade: 9
+                                                name: "Examen "+(i+1),
+                                                porcentage: porc[i],
+                                                grade: parseInt(Math.random()*10+1)
                                               }, function(err, met){
                                                 if(err){
                                                   console.log(err);
                                                 }else{
-
-
                                                   course.metric.push(met);
                                                   course.save();
-                                                  console.log("course: "+ course);
-                                                  console.log("metric: "+met);
-
-
+                                                  // console.log("course: "+ course);
+                                                  // console.log("metric: "+met);
                                                   // console.log("semester: " + semester);
                                                   // console.log("Created a new metric");
                                                 }
@@ -58,7 +57,7 @@ function seedDB(){
                                               });
                                               semester.courses.push(course);
                                               semester.save();
-                                              console.log(JSON.stringify(semester.courses, null, 4));
+                                              // console.log(JSON.stringify(semester.courses, null, 4));
                                   // console.log("Created a new course");
                               });
                             }
