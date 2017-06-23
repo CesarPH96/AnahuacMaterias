@@ -1,6 +1,5 @@
-var semesters = document.querySelectorAll(".semester");
-var courses = document.querySelectorAll(".courses");
-    // materias =  document.querySelectorAll(".materia");
+var semesters = document.querySelectorAll("li.semester");
+var courses = document.querySelectorAll("li.courses");
 
 
 semesters.forEach(function(semester){

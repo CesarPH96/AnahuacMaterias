@@ -2,40 +2,92 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Anahuac Materias: Inicio</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/main.css">
+
   </head>
   <body>
-    <h1>Home Page</h1>
+      <div class="container">
+        <div class="row">
+          <div class="thumbnail center-block">
+            <img class="img-responsive" src="https://laactitudconpeso.files.wordpress.com/2012/05/a-mayap-01.png"  />
+            <h1>Anahuac Materias</h1>
+          </div>
 
-      <% semesters.forEach(function(semester){ %>
-        <ul>
-          <li class="semester "><%= semester.name %></li>
-          <ul class="collapse">
-          <% courses.forEach(function(course){ %>
-            <li class="courses"><%= course.name %></li>
-            <table class="collapse">
-              <thead>
-                <tr>
-                  <th>Atributo</th>
-                  <th>Porcentaje</th>
-                  <th>Calificación</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% metrics.forEach(function(metric){ %>
-                  <tr class="metric">
-                    <th><%= metric.name %></th>
-                    <th><%= metric.porcentage %></th>
-                    <th><%= metric.grade %></th>
-                  </tr>
+        </div>
+
+      </div>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Anahuac</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class = "nav navbar-nav navbar-right">
+              <li><a href="/login">Iniciar Sesión</a></li>
+              <li><a href="/signup">Registrarse</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="semesters-container">
+        <div class="container">
+          <% semesters.forEach(function(semester){ %>
+            <ul class="panel panel-primary">
+              <li class="semester panel-heading ">
+                <%= semester.name %>
+                  <form action="/semester/<%= semester._id %>/courses/new" method="GET">
+                    <button class="btn btn-default plus pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true" alt="añadir Atributo"></span></button>
+                  </form>
+              </li>
+              <ul class="collapse panel-body">
+              <div class="row">
+                <% courses.forEach(function(course){ %>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                      <div class="panel panel-default ">
+                        <li class="courses panel-heading">
+                          <%= course.name %>
+                          <form action="/semester/<%= semester._id %>/courses/edit" method="POST">
+                            <button class="btn btn-default pencil pull-right"><span class="glyphicon glyphicon-pencil" aria-hidden="true" alt="editar materia"></span></button>
+                          </form>
+                        </li>
+                        <table class="collapse table table-striped table-bordered table-responsive">
+                          <thead>
+                            <tr>
+                              <th>Criterio</th>
+                              <th>%</th>
+                              <th>Calificación</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% metrics.forEach(function(metric){ %>
+                              <tr class="metric">
+                                <td><%= metric.name %></td>
+                                <td><%= metric.porcentage %></td>
+                                <td class="metric-grade"><input type="Number" value="<%=metric.grade%>" step="0.1"/></td>
+                              </tr>
+                            <% }); %>
+                            <tr class="final-grade">
+                              <td colspan="2"> Calificación Final </td>
+                              <td class="final-grade-grade">9</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                 <% }); %>
-            </tbody>
-          </table>
-          <% }); %>
-          </ul>
-        </ul>
-    <%   }); %>
+              </div>
+              </ul>
+            </ul>
+        <%   }); %>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
     <script type="text/javascript" src="/main.js"></script>
   </body>
 </html>
