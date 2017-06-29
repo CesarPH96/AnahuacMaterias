@@ -3,6 +3,7 @@ body{
   font-family: 'Raleway', sans-serif;
   font-size: 25px;
 }
+
 h1{
   margin-top:0;
   margin-left: 20px;
@@ -17,6 +18,16 @@ ul{
 form{
   display: inline;
 }
+
+h4{
+  font-size: 1.5em;
+  color: #333;
+  margin:0;
+}
+input:focus{
+  outline: none;
+}
+
 .thumbnail{
   border: none;
   margin: 15px 0 0 5px;
@@ -30,14 +41,12 @@ form{
   margin-bottom: 10px;
   color: white;
 }
-.thumbnail h1{
-}
-.container{
+.container-title{
   width: 100%;
   background: #333;
   color:white;
-}
 
+}
 .container-fluid{
   width:80%;
   color:white;
@@ -47,7 +56,7 @@ form{
   border:none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-
+  margin-bottom: 0;
 }
 .navbar-default .navbar-brand{
   color:white;
@@ -69,98 +78,21 @@ form{
   background: #FCA142;
 }
 
-.semesters-container .container{
-  width: 80%;
-  padding: 20px 10px;
-  background: #EBEBEB;
-  margin-top: 20px;
-  border-radius: 10px;
-
-}
-
-.semester{
-  color: white;
-  padding:20px;
-  font-size: 1em;
-}
-
-.plus{
-  background: #333;
-  color:white;
-  border:0;
-  font-size: 0.7em;
-}
-.plus:hover{
-  color:#dedfe0;
-  border:0;
-  background: #333;
-  font-size: 0.7em;
-}
-
-.pencil{
+.course-title{
   background: #ff901a;
-  color:white;
-  border:0;
-  font-size: 0.9em;
-  padding: 0;
-}
-.pencil:hover{
-  background: #ff901a;
-  color:#dedfe0;
-  border:0;
-  font-size: 0.9em;
-  padding: 0;
-}
-
-.panel{
-  border: none;
-}
-
-.panel-body{
-  background: #FFF;
-  border: 1.2px solid #333;
-  border-radius: 0 0 3px 2px;
-}
-
-.panel-primary{
-  padding-left: 0;
-  border-color:  #333;
-  margin-bottom:50px;
-}
-
-.panel-primary > .panel-heading{
-    background: #333;
-    border-color:  #333;
-}
-
-.panel-default{
-  border-color: #ff901a;
-}
-.panel-default > .panel-heading{
-    background: #ff901a;
-    color:white;
-    border-color: #ff901a;
-}
-
-.panel-default > .panel-body{
   border: 1px solid #333;
-  color:black;
-  border-radius: 0 0 3px 2px;
+  border-radius: 3px 2px 0 0;
+  color:white;
+  font-size: 0.9em;
+  padding-left: 20px;
 }
 
-.courses{
-  border-bottom:0;
-  font-size: .6em;
+.course-credit{
+  font-size: 0.6em;
+  letter-spacing: 1px;
 }
-.courses:hover{
-  text-decoration: underline;
-}
-
 .collapse{
   display: none;
-}
-.courses.panel-heading{
-  border:1px solid #333;
 }
 /*tabla de atributos*/
 .table{
@@ -181,21 +113,28 @@ form{
 }
 .metric td:nth-of-type(1){
   width:50%;
+  padding:10px 0;
+  margin:0;
 }
-.metric td:nth-of-type(3){
+
+.metric td:nth-of-type(3), .metric td:nth-of-type(2){
   width:20%;
   padding:10px 0;
   margin:0;
 }
-.metric td:nth-of-type(3) > input[type="number"]{
+.metric> td > input {
   padding: 0 0 0 10px;
   margin: 0;
   border: 0;
-  max-width: 100px;
+  max-width: 600px;
   width:100%;
   height: 120%;
   background: inherit;
 }
+.metric td:nth-of-type(1) > input{
+  width:100%;
+}
+
 .final-grade{
   font-weight: 700;
 }
