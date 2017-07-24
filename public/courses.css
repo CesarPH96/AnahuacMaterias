@@ -1,0 +1,12 @@
+.container-course{
+  margin-top: 60px;
+  width: 80%;
+  max-width: 900px;
+}
+.course-title input{
+ background: inherit;
+ border: 0;
+}
+.course-credit input{
+  width: 20px;
+}

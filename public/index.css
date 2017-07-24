@@ -1,0 +1,44 @@
+.plus{
+  background: #333;
+  color:white;
+  border:0;
+  font-size: 0.7em;
+}
+
+.plus:hover{
+  color:#dedfe0;
+  border:0;
+  background: #333;
+  font-size: 0.7em;
+}
+
+.pencil{
+  background: #ff901a;
+  color:white;
+  border:0;
+  font-size: 0.6em;
+  padding: 0;
+}
+.pencil:hover{
+  background: #ff901a;
+  color:#dedfe0;
+  border:0;
+  font-size: 0.6em;
+  padding: 0;
+}
+
+.course-title{
+  font-size: 0.8em;
+  padding: 8px;
+}
+
+.container-course{
+  width: 100%;
+}
+.container-course .row{
+  width: 90%;
+  margin: 0 auto;
+}
+.container-course-title{
+  width: 90%;
+}
