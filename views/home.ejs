@@ -14,7 +14,7 @@
       <div class="col-md-4 col-sm-6">
           <div class="course-title">
             <span><%= course.name %></span>
-            <span class="course-credit">(7 creditos)</span>
+            <span class="course-credit">(<%= course.credits %> creditos)</span>
             <form action="/<%= course._id %>/edit" method="POST">
               <button type="button" class="btn btn-default pencil pull-right"><span class="glyphicon glyphicon-pencil" aria-hidden="true" alt="editar materia"></span></button>
             </form>
