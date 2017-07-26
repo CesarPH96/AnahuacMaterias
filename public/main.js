@@ -1,19 +1,19 @@
-var semesters = document.querySelectorAll("li.semester");
-var courses = document.querySelectorAll("li.courses");
-
-
-semesters.forEach(function(semester){
-  collapse(semester);
-});
-courses.forEach(function(course){
-  collapse(course);
-});
-
-function collapse(element){
-  element.addEventListener("click", function(event){
-    event.target.nextElementSibling.classList.toggle("collapse");
-  });
-}
+// var semesters = document.querySelectorAll("li.semester");
+// var courses = document.querySelectorAll("li.courses");
+//
+//
+// semesters.forEach(function(semester){
+//   collapse(semester);
+// });
+// courses.forEach(function(course){
+//   collapse(course);
+// });
+//
+// function collapse(element){
+//   element.addEventListener("click", function(event){
+//     event.target.nextElementSibling.classList.toggle("collapse");
+//   });
+// }
 
 var form = document.querySelector("#metricForm"),
     table = document.querySelector(".table"),
@@ -48,3 +48,28 @@ function deleteLastMetric(){
     table.deleteRow(--last);
   }
 }
+
+var finalGrade = document.querySelectorAll(".final-grade-grade"),
+    metricGrade = document.querySelectorAll(".metric-grade");
+    updateCourse = document.querySelectorAll(".updateCourse");
+
+function calculateGrade(){
+  finalGrade.forEach(function(grade){
+    let fgrade = 0;
+    let childTable = grade.offsetParent.childNodes[3].childNodes;
+    for(let i = 1; i<childTable.length-2; i+=2){
+      fgrade += Number(childTable[i].childNodes[3].textContent) * (Number(childTable[i].childNodes[5].firstChild.value)/100);
+    }
+    grade.innerText = parseFloat(fgrade).toFixed(2);
+    console.log(fgrade);
+  });
+
+}
+
+metricGrade.forEach(function(grade, i){
+  grade = grade.firstChild;
+  grade.addEventListener("change", function(event){
+    calculateGrade();
+
+  });
+});
