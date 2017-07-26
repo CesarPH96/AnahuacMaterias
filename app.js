@@ -1,8 +1,10 @@
-var express       = require("express"),
-    mongoose      = require("mongoose"),
-    bodyParser    = require("body-parser"),
-    app           = express();
-    seedDB        = require("./seeds");
+var express         = require("express"),
+    mongoose        = require("mongoose"),
+    bodyParser      = require("body-parser"),
+    app             = express(),
+    seedDB          = require("./seeds"),
+    methodOverride  = require("method-override");
+
 //configuración base de datos
 mongoose.connect("mongodb://localhost/Anahuac_materias");
 mongoose.Promise = global.Promise;
@@ -15,6 +17,7 @@ app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 // seedDB
 //coneccion con las rutas
 app.use('/', indexRoutes);
