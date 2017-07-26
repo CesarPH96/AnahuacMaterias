@@ -13,6 +13,10 @@ router.get("/courses", function(req, res){
   });
 });
 
+router.get("/courses/new", function(req, res){
+  res.render("courses/new");
+});
+
 router.post("/courses", function(req, res){
   let newMetrics = [];
   for(let i=0; i < req.body.metrics.name.length; i++){
@@ -27,7 +31,6 @@ router.post("/courses", function(req, res){
     credits: req.body.course.credits,
     metrics: newMetrics
   };
-
   Course.create(newCourse, function(err, course){
     if(err){
       console.log(err);
@@ -37,8 +40,33 @@ router.post("/courses", function(req, res){
   });
 });
 
-router.get("/courses/new", function(req, res){
-  res.render("courses/new");
+router.get("/:courseId/edit", function(req, res){
+    Course.findById(req.params.courseId, function(err, foundCourse){
+        res.render("courses/edit", {course: foundCourse});
+    });
+});
+router.put("/:courseId", function(req,res){
+  let newMetrics = [];
+  for(let i=0; i < req.body.metrics.name.length; i++){
+    newMetrics.push({
+      name: req.body.metrics.name[i],
+      porcentage: req.body.metrics.porcentage[i],
+      grade: req.body.metrics.grade[i]
+    });
+  }
+  let newCourse = {
+    name: req.body.course.title,
+    credits: req.body.course.credits,
+    metrics: newMetrics
+  };
+  Course.findByIdAndUpdate(req.params.courseId, newCourse ,function(err, updatedCourse){
+      res.redirect("/courses");
+  });
+});
+router.delete("/:courseId", function(req, res){
+  Course.findByIdAndRemove(req.params.courseId, function(err){
+      res.redirect("/courses");
+  });
 });
 
 
