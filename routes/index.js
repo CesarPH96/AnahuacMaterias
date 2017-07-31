@@ -19,18 +19,24 @@ router.get("/courses/new", function(req, res){
 
 router.post("/courses", function(req, res){
   let newMetrics = [];
+  let fGrade = 0;
   for(let i=0; i < req.body.metrics.name.length; i++){
     newMetrics.push({
       name: req.body.metrics.name[i],
       porcentage: req.body.metrics.porcentage[i],
       grade: req.body.metrics.grade[i]
     });
+    fGrade +=  Number(req.body.metrics.grade[i]) * Number((req.body.metrics.porcentage[i]/100));
   }
+
+
   let newCourse = {
     name: req.body.course.title,
     credits: req.body.course.credits,
-    metrics: newMetrics
+    metrics: newMetrics,
+    finalGrade: fGrade.toFixed(2)
   };
+
   Course.create(newCourse, function(err, course){
     if(err){
       console.log(err);
@@ -45,24 +51,52 @@ router.get("/:courseId/edit", function(req, res){
         res.render("courses/edit", {course: foundCourse});
     });
 });
+
 router.put("/:courseId", function(req,res){
   let newMetrics = [];
+  let fGrade = 0;
   for(let i=0; i < req.body.metrics.name.length; i++){
     newMetrics.push({
       name: req.body.metrics.name[i],
       porcentage: req.body.metrics.porcentage[i],
       grade: req.body.metrics.grade[i]
     });
+    fGrade +=  Number(req.body.metrics.grade[i]) * Number((req.body.metrics.porcentage[i]/100));
+
   }
   let newCourse = {
     name: req.body.course.title,
     credits: req.body.course.credits,
-    metrics: newMetrics
+    metrics: newMetrics,
+    finalGrade: fGrade.toFixed(2)
   };
   Course.findByIdAndUpdate(req.params.courseId, newCourse ,function(err, updatedCourse){
       res.redirect("/courses");
   });
 });
+
+router.put("/:courseId/g", function(req,res){
+  let newMetrics = [];
+  let fGrade = 0;
+  console.log( req.body);
+  for(let i=0; i < req.body.metrics.grade.length; i++){
+    newMetrics.push({
+      name:req.body.metrics.name[i],
+      porcentage: req.body.metrics.porcentage[i],
+      grade: req.body.metrics.grade[i]
+    });
+    fGrade +=  Number(req.body.metrics.grade[i]) * Number((req.body.metrics.porcentage[i]/100));
+
+  }
+  let newCourse = {
+    metrics: newMetrics,
+    finalGrade: fGrade.toFixed(2)
+  };
+  Course.findByIdAndUpdate(req.params.courseId, newCourse ,function(err, updatedCourse){
+    res.redirect("/courses");
+  });
+});
+
 router.delete("/:courseId", function(req, res){
   Course.findByIdAndRemove(req.params.courseId, function(err){
       res.redirect("/courses");
