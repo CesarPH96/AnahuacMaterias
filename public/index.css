@@ -1,37 +1,77 @@
-.plus{
-  background: #333;
-  color:white;
-  border:0;
-  font-size: 0.7em;
+h4{
+  font-size: 1.5em;
+  background:  #333;
+  float: left;
+  padding: 5px 20px;
+  margin: 0 auto;
+  margin-left: -5px;
+  width:85%;
+  border-radius: 5px;
+  color: white;
+  font-weight:800;
+  text-align: left;
+
+}
+hr{
+ margin: 5px 0 0 0;
+}
+.addCourse{
+  margin-left: -5px;
+  padding: 12px 15px;
+  font-weight: 600;
+  font-size: 17px;
 }
 
-.plus:hover{
-  color:#dedfe0;
+.icon{
+  background: #ff901a;
   border:0;
-  background: #333;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  color:white;
   font-size: 0.7em;
+  margin-right: 2px;
+  padding: 0;
+}
+.icon:hover{
+  background: #f99c3b;
+  border:0;
+  color:white;
+  font-size: 0.7em;
+  padding: 3px 0 2.8px 0;
+  text-decoration: underline;
 }
 
-.pencil{
+.icon:focus{
+  outline: none;
+  background: #ff901a;
+  color: white;
+}
+.icon:active:focus{
+  outline: none;
+}
+.icon:active:hover{
   background: #ff901a;
   color:white;
-  border:0;
-  font-size: 0.6em;
-  padding: 0;
 }
-.pencil:hover{
+.icon:active{
   background: #ff901a;
-  color:#dedfe0;
-  border:0;
-  font-size: 0.6em;
-  padding: 0;
+  color:white;
+}
+.icon span{
+  margin-right: 5px;
+}
+
+.icon span:nth-of-type(2){
+  font-size: 1em;
 }
 
 .course-title{
   font-size: 0.8em;
-  padding: 8px;
+  padding: 8px 8px 0 8px;
 }
-
+.course-title span:first-of-type{
+    font-weight: 600;
+}
 .container-course{
   width: 100%;
 }
@@ -41,4 +81,10 @@
 }
 .container-course-title{
   width: 90%;
+  margin:20px 0 40px 6%;
+}
+
+.row{
+  display:flex;
+  flex-wrap: wrap;
 }
