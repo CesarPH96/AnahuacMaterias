@@ -1,0 +1,24 @@
+<% include ./partials/header.ejs %>
+  <title>Anahuac Materias: Iniciar Sesion</title>
+  <link rel="stylesheet" href="/index.css">
+<% include ./partials/middle.ejs %>
+<div class="container">
+  <h1>Register</h1>
+  <form action="/signup" method="POST">
+    <div class="form-group">
+      <label for="username">Nombre de Usuario</label>
+      <input type="text" name="username" class="form-control" id="username" placeholder="Nombre de Usuario">
+    </div>
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+  </form>
+</div>
+
+
+
+
+
+<% include ./partials/footer.ejs %>

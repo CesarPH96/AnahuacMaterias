@@ -1,7 +1,8 @@
 var express       = require("express"),
     router        = express.Router(),
-    Course      = require("../models/course");
-
+    Course        = require("../models/course"),
+    User          = require("../models/user"),
+    passport      = require("passport");
 //configuracion de la pagina principal
 router.get("/", function(req, res){
   res.redirect("/courses");
@@ -103,6 +104,38 @@ router.delete("/:courseId", function(req, res){
   });
 });
 
+router.get("/login", function(req, res){
+  res.render("login");
+});
+router.get("/signup", function(req, res){
+  res.render("register");
+});
+
+router.post("/signup", function(req, res){
+  let newUser = new User({username: req.body.username});
+  User.register(newUser, req.body.password, function(err, user){
+    if(err){
+      console.log(err);
+      return res.redirect("/signup");
+    }
+    passport.authenticate("local")(req, res, function(){
+      res.redirect("/");
+    });
+  });
+});
+
+router.post("/login",passport.authenticate("local",//middleware
+{
+  successRedirect:"/courses",
+  failureRedirect:"/login"
+}), function(req, res){
+
+});
+
+router.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+});
 
 module.exports = router;
 // router.get("/", function(req, res){
