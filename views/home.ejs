@@ -9,7 +9,7 @@
       <a href="/courses/new" class="btn btn-warning btn-sm addCourse">Añadir</a>
   </div>
   <div class="row">
-    <% courses.forEach(function(course, i){  %>
+    <% user.courses.forEach(function(course, i){  %>
       <div class="col-md-4 col-sm-6">
           <div class="course-title">
             <span><%= course.name %></span>
@@ -72,7 +72,7 @@
           </tr>
         </thead>
         <tbody>
-          <% courses.forEach(function(course, i){  %>
+          <% user.courses.forEach(function(course, i){  %>
             <tr class="courses-final-grade">
               <td><%=course.name%></td>
               <td class="courses-credits"><%=course.credits%></td>
