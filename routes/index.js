@@ -4,21 +4,27 @@ var express       = require("express"),
     User          = require("../models/user"),
     passport      = require("passport");
 //configuracion de la pagina principal
-router.get("/", function(req, res){
+router.get("/", isLoggedIn, function(req, res){
   res.redirect("/courses");
 });
 
-router.get("/courses", function(req, res){
-  Course.find({},function(err, foundCourse){
-        res.render("home", {courses: foundCourse});
+// router.get("/courses", function(req, res){
+//   Course.find({},function(err, foundCourse){
+//         res.render("home", {courses: foundCourse});
+//   });
+// });
+
+router.get("/courses", isLoggedIn, function(req, res){
+  User.findById(req.user._id).populate("courses").exec(function(err, foundUser){
+    res.render("home", {user: foundUser});
   });
 });
 
-router.get("/courses/new", function(req, res){
+router.get("/courses/new", isLoggedIn, function(req, res){
   res.render("courses/new");
 });
 
-router.post("/courses", function(req, res){
+router.post("/courses", isLoggedIn, function(req, res){
   let newMetrics = [];
   let fGrade = 0;
   for(let i=0; i < req.body.metrics.name.length; i++){
@@ -29,8 +35,6 @@ router.post("/courses", function(req, res){
     });
     fGrade +=  Number(req.body.metrics.grade[i]) * Number((req.body.metrics.porcentage[i]/100));
   }
-
-
   let newCourse = {
     name: req.body.course.title,
     credits: req.body.course.credits,
@@ -38,22 +42,26 @@ router.post("/courses", function(req, res){
     finalGrade: fGrade.toFixed(2)
   };
 
-  Course.create(newCourse, function(err, course){
-    if(err){
-      console.log(err);
-    }else{
-      res.redirect("/courses");
-    }
+  User.findById(req.user._id, function(err, foundUser){
+      Course.create(newCourse, function(err, course){
+        if(err){
+          console.log(err);
+        }else{
+          foundUser.courses.push(course);
+          foundUser.save();
+          res.redirect("/courses");
+        }
+      });
   });
 });
 
-router.get("/:courseId/edit", function(req, res){
+router.get("/:courseId/edit", isLoggedIn, function(req, res){
     Course.findById(req.params.courseId, function(err, foundCourse){
         res.render("courses/edit", {course: foundCourse});
     });
 });
 
-router.put("/:courseId", function(req,res){
+router.put("/:courseId",isLoggedIn, function(req,res){
   let newMetrics = [];
   let fGrade = 0;
   for(let i=0; i < req.body.metrics.name.length; i++){
@@ -76,7 +84,7 @@ router.put("/:courseId", function(req,res){
   });
 });
 
-router.put("/:courseId/g", function(req,res){
+router.put("/:courseId/g", isLoggedIn, function(req,res){
   let newMetrics = [];
   let fGrade = 0;
   console.log( req.body);
@@ -98,7 +106,7 @@ router.put("/:courseId/g", function(req,res){
   });
 });
 
-router.delete("/:courseId", function(req, res){
+router.delete("/:courseId", isLoggedIn, function(req, res){
   Course.findByIdAndRemove(req.params.courseId, function(err){
       res.redirect("/courses");
   });
@@ -107,6 +115,7 @@ router.delete("/:courseId", function(req, res){
 router.get("/login", function(req, res){
   res.render("login");
 });
+
 router.get("/signup", function(req, res){
   res.render("register");
 });
@@ -136,6 +145,13 @@ router.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
 });
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect("/login");
+}
 
 module.exports = router;
 // router.get("/", function(req, res){
