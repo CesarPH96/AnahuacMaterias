@@ -98,11 +98,3 @@ function updateFinalGrade(){
   });
   calculateFinalGrade();
 }
-
-function undisabled(){
-  let disable = document.querySelectorAll(".disable");
-  disable.forEach(function(dis){
-    dis.disabled = false;
-  });
-  setTimeout(function(){document.getElementById('saveChanges').submit();}, 3000);
-}

@@ -41,11 +41,11 @@
               </tr>
             </thead>
             <tbody>
-              <form id="saveChanges" onsubmit="return undisabled()" action="/<%= course._id %>/g?_method=PUT" method="POST">
+              <form id="saveChanges" action="/<%= course._id %>/g?_method=PUT" method="POST">
                 <% course.metrics.forEach(function(metric){ %>
                   <tr class="metric">
-                    <td><input class="disable" type="Text" name="metrics[name]" value="<%= metric.name %>" disabled/></td>
-                    <td class="metric-porcentage"><input class="disable" type="Number" name="metrics[porcentage]" value="<%= metric.porcentage %>" step="1" disabled/></td>
+                    <td><input type="Text" name="metrics[name]" value="<%= metric.name %>" readonly/></td>
+                    <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="<%= metric.porcentage %>" step="1" readonly/></td>
                     <td class="metric-grade"><input type="Number" name="metrics[grade]" value="<%=metric.grade%>" step="0.1" max="10"/></td>
                   </tr>
                 <% }); %>
