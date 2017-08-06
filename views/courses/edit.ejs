@@ -1,14 +1,15 @@
 <% include ../partials/header.ejs %>
- <title>Anahuac Materias: Materia</title>
+ <title>Anahuac Materias: Editar <%= course.name %></title>
  <link rel="stylesheet" href="/courses.css">
 <% include ../partials/middle.ejs %>
 
-<div class="container ">
+<div class="container container-top">
+  <h4>Editar  <%= course.name %></h4>
   <div class="form-group">
     <div class="input-group">
-      <input type="text" class="form-control" id="nameMetric" placeholder="nombre criterio">
+      <input type="text" class="form-control" id="nameMetric" placeholder="Exámen 1">
       <span class="input-group-btn">
-        <button class="btn btn-default" onclick="addMetric()" type="button">Añadir</button>
+        <button class="btn btn-warning" onclick="addMetric()" type="button">Añadir</button>
       </span>
     </div>
   </div>
@@ -28,7 +29,6 @@
           </tr>
         </thead>
         <tbody>
-          <tbody>
             <% course.metrics.forEach(function(metric){ %>
               <tr class="metric">
                 <td><input type="text" name="metrics[name]" value="<%= metric.name %>"/></td>
@@ -36,12 +36,16 @@
                 <td class="metric-grade"><input type="Number" value="<%=metric.grade%>" name="metrics[grade]" step="0.1"/></td>
               </tr>
             <% }); %>
-          </tbody>
+            <tr class="final-grade">
+              <td> Calificación Final </td>
+              <td class="total-procentage"></td>
+              <td class="final-grade-grade"></td>
+            </tr>
         </tbody>
       </table>
-  <button class="btn btn-sm btn-success">Enviar</button>
+  <button class="btn btn-sm btn-success">Guardar cambios</button>
   </form>
-  <button class="btn btn-sm btn-danger" onclick="deleteLastMetric()">Borrar criterio anterior</button>
+  <button class="btn btn-sm btn-danger" onclick="deleteLastMetric()">Borrar ultimo criterio</button>
 </div>
 
 <% include ../partials/footer.ejs %>

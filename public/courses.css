@@ -1,5 +1,5 @@
 .container-course{
-  margin-top: 60px;
+  /*margin-top: 30px;*/
   width: 80%;
   max-width: 900px;
 }
@@ -9,4 +9,19 @@
 }
 .course-credit input{
   width: 20px;
+}
+
+.container-top{
+  width: 80%;
+  padding: 20px;
+}
+h4{
+  text-align: center;
+  font-weight: 600;
+  padding: 20px 0;
+
+}
+.container-top .form-group{
+  width: 70%;
+  margin: 0 auto;
 }

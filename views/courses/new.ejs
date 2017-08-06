@@ -18,7 +18,7 @@
 
   <div class="form-group">
     <div class="input-group">
-      <input type="text" class="form-control" id="nameMetric" placeholder="nombre criterio">
+      <input type="text" class="form-control" id="nameMetric" placeholder="Exámen 1">
       <span class="input-group-btn">
         <button class="btn btn-default" onclick="addMetric()" type="button">Añadir</button>
       </span>
@@ -48,7 +48,7 @@
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="metric">
-            <td><input type="text" name="metrics[name]" value="Examen 1"/></td>
+            <td><input type="text" name="metrics[name]" value="Exámen 1"/></td>
             <td><input type="Number" name="metrics[porcentage]" value="10" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
@@ -58,14 +58,19 @@
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="metric">
-            <td><input type="text" name="metrics[name]" value="Examen 2"/></td>
+            <td><input type="text" name="metrics[name]" value="Exámen 2"/></td>
             <td><input type="Number" name="metrics[porcentage]" value="10" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="metric">
-            <td><input type="text" name="metrics[name]" value="Examen Final"/></td>
+            <td><input type="text" name="metrics[name]" value="Exámen Final"/></td>
             <td><input type="Number" name="metrics[porcentage]" value="40" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
+          </tr>
+          <tr class="final-grade">
+            <td> Calificación Final </td>
+            <td class="total-procentage"></td>
+            <td class="final-grade-grade"></td>
           </tr>
         </tbody>
       </table>

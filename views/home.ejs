@@ -46,7 +46,7 @@
                   <tr class="metric">
                     <td><input type="Text" name="metrics[name]" value="<%= metric.name %>" readonly/></td>
                     <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="<%= metric.porcentage %>" step="1" readonly/></td>
-                    <td class="metric-grade"><input type="Number" name="metrics[grade]" value="<%=metric.grade%>" step="0.1" max="10"/></td>
+                    <td class="metric-grade"><input type="Number" name="metrics[grade]" value="<%= metric.grade%>" step="0.1" max="10"/></td>
                   </tr>
                 <% }); %>
               </form>

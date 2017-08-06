@@ -138,3 +138,10 @@ input:focus{
 .final-grade{
   font-weight: 700;
 }
+.btn-warning{
+  background: #ff901a;
+}
+
+.btn-warning:hover{
+  background: #FCA142;
+}
