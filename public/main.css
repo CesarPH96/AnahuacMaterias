@@ -28,6 +28,11 @@ input:focus{
   outline: none;
 }
 
+table thead tr th{
+  text-align: center;
+}
+
+
 .thumbnail{
   border: none;
   margin: 15px 0 0 5px;
@@ -144,4 +149,9 @@ input:focus{
 
 .btn-warning:hover{
   background: #FCA142;
+}
+
+.username{
+  font-size: 0.6em;
+  padding: 15px;
 }

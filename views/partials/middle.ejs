@@ -20,7 +20,7 @@
             <li><a href="/login">Iniciar Sesión</a></li>
             <li><a href="/signup">Registrarse</a></li>
           <% }else{ %>
-            <li><a href="#"> <%= currentUser.username %> </a></li>
+            <li class="username"> <%= currentUser.username %> </li>
             <li><a href="/logout">Cerrar Sesión</a></li>
           <% } %>
         </ul>
