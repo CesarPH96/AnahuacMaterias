@@ -33,19 +33,62 @@ function deleteLastMetric(){
   }
 }
 
-var finalGrade = document.querySelectorAll(".final-grade-grade");
+var finalGrade = document.querySelectorAll(".final-grade-grade"),
+    totalPorcentage = document.querySelector(".total-porcentage"),
+    porcentageMetric = document.querySelectorAll(".metric-porcentage"),
+    gradeMetric = document.querySelectorAll(".metric-grade"),
+    courseForm = document.querySelector("#courseForm");
 
 calculateGrade();
 function calculateGrade(){
   finalGrade.forEach(function(grade){
     let fgrade = 0;
+    let tporc = 0;
     let childTable = grade.offsetParent.childNodes[3].childNodes;
     for(let i = 1; i<childTable.length-2; i+=2){
       fgrade += Number(childTable[i].childNodes[3].firstChild.value) * (Number(childTable[i].childNodes[5].firstChild.value)/100);
-      console.log("i: "+fgrade);
+      tporc += Number(childTable[i].childNodes[3].firstChild.value);
+      console.log("i: " + fgrade);
+      console.log("p: " + tporc);
     }
     grade.innerText = parseFloat(fgrade).toFixed(2);
+    totalPorcentage.textContent = tporc;
+    if(tporc > 100){
+      totalPorcentage.style.color = "red";
+    }else{
+      totalPorcentage.style.color = "black";
+    }
     console.log(fgrade);
   });
 
 }
+
+porcentageMetric.forEach(function(porcentage){
+  porcentage.addEventListener("change", function(event){
+    calculateGrade();
+  });
+});
+
+gradeMetric.forEach(function(grade){
+  grade.addEventListener("change", function(event){
+    calculateGrade();
+  });
+});
+
+window.addEventListener('keydown',function(e){
+  if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){
+    if((e.target.nodeName=='INPUT'&&e.target.type=='number') || (e.target.nodeName=='INPUT'&&e.target.type=='text') ){
+      e.preventDefault();return false;
+    }
+  }
+},true);
+
+ function checkPorcentage(){
+   if(totalPorcentage.textContent == 100){
+     return true;
+
+   }else{
+    document.querySelector("#alert-porcentage").classList.remove("disable");
+     return false;
+   }
+ }

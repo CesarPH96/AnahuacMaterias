@@ -2,9 +2,10 @@
  <title>Anahuac Materias: Editar <%= course.name %></title>
  <link rel="stylesheet" href="/courses.css">
 <% include ../partials/middle.ejs %>
-
 <div class="container container-top">
+  <div id="alert-porcentage" class="disable alert alert-warning  alert-dismissible" role="alert">La suma de porcentajes debe dar 100!</div>
   <h4>Editar  <%= course.name %></h4>
+  <hr>
   <div class="form-group">
     <div class="input-group">
       <input type="text" class="form-control" id="nameMetric" placeholder="Exámen 1">
@@ -15,7 +16,7 @@
   </div>
 </div>
 <div class="container container-course">
-  <form id="metricForm" action="/<%= course._id %>?_method=PUT" method="POST">
+  <form id="courseForm" onsubmit="return checkPorcentage()" action="/<%= course._id %>?_method=PUT" method="POST">
       <div class="course-title">
         <span><input type="text" id="courseTitle" name="course[title]" value="<%= course.name %>"/></span>
         <span class="course-credit">(<input type="text" id="courseCredit" name="course[credits]" value="<%= course.credits %>"/>créditos)</span>
@@ -32,20 +33,20 @@
             <% course.metrics.forEach(function(metric){ %>
               <tr class="metric">
                 <td><input type="text" name="metrics[name]" value="<%= metric.name %>"/></td>
-                <td><input type="Number" name="metrics[porcentage]" value="<%= metric.porcentage %>" step="1"/></td>
+                <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="<%= metric.porcentage %>" step="1"/></td>
                 <td class="metric-grade"><input type="Number" value="<%=metric.grade%>" name="metrics[grade]" step="0.1"/></td>
               </tr>
             <% }); %>
             <tr class="final-grade">
               <td> Calificación Final </td>
-              <td class="total-procentage"></td>
+              <td class="total-porcentage"></td>
               <td class="final-grade-grade"></td>
             </tr>
         </tbody>
       </table>
   <button class="btn btn-sm btn-success">Guardar cambios</button>
   </form>
-  <button class="btn btn-sm btn-danger" onclick="deleteLastMetric()">Borrar ultimo criterio</button>
+  <button class="btn btn-sm btn-danger" onclick="deleteLastMetric()">Borrar último criterio</button>
 </div>
 <script type="text/javascript" src="/courses.js"></script>
 <% include ../partials/footer.ejs %>
