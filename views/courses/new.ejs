@@ -3,32 +3,35 @@
  <link rel="stylesheet" href="/courses.css">
 <% include ../partials/middle.ejs %>
 
-<div class="container ">
-  <form class="" action="index.html" method="post">
-    <div class="form-group">
-      <input type="text" class="form-control" id="courseName" placeholder="Nombre Materia" aria-describedby="sizing-addon2">
-    </div>
-    <div class="form-group">
-      <input type="number" class="form-control" id="courseCre" placeholder="Creditos" aria-describedby="sizing-addon2">
-    </div>
-    <div class="form-group">
-      <input type="button" class="form-control" onclick="createForm()" value="Crear" aria-describedby="sizing-addon2">
-    </div>
-  </form>
-
+<div class="container container-top ">
   <div class="form-group">
-    <div class="input-group">
-      <input type="text" class="form-control" id="nameMetric" placeholder="Exámen 1">
-      <span class="input-group-btn">
-        <button class="btn btn-default" onclick="addMetric()" type="button">Añadir</button>
-      </span>
-    </div>
+    <label for="courseName">Nombre de la materia</label>
+    <input type="text" class="form-control" id="courseName" placeholder="Cálculo Univariado" aria-describedby="sizing-addon2" required>
   </div>
+  <div class="form-group">
+    <label for="courseCre">Número de créditos</label>
+    <input type="number" class="form-control" id="courseCre" placeholder="10" aria-describedby="sizing-addon2" required>
+  </div>
+  <div class="form-group">
+    <input type="button" class="btn btn-md btn-success" onclick="createForm()" value="Crear" aria-describedby="sizing-addon2">
+  </div>
+
 </div>
 
 
 <div class="collapse container container-course">
-  <form id="metricForm" action="/courses" method="POST">
+    <div id="alert-porcentage" class="disable alert alert-warning  alert-dismissible" role="alert">La suma de porcentajes debe dar 100!</div>
+    <h4>Crear Materia</h4>
+    <hr>
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text" class="form-control" id="nameMetric" placeholder="Exámen 1">
+        <span class="input-group-btn">
+          <button class="btn btn-warning" onclick="addMetric()" type="button">Añadir</button>
+        </span>
+      </div>
+    </div>
+  <form id="courseForm" onsubmit="return checkPorcentage()" action="/courses" method="POST">
       <div class="course-title">
         <span><input type="text" id="courseTitle" name="course[title]"/></span>
         <span class="course-credit">(<input type="text" id="courseCredit" name="course[credits]"/>créditos)</span>
@@ -44,32 +47,32 @@
         <tbody>
           <tr class="metric">
             <td><input type="text" name="metrics[name]" value="Participación y Tareas"/></td>
-            <td><input type="Number" name="metrics[porcentage]" value="20" step="1"/></td>
+            <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="20" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="metric">
             <td><input type="text" name="metrics[name]" value="Exámen 1"/></td>
-            <td><input type="Number" name="metrics[porcentage]" value="10" step="1"/></td>
+            <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="10" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="metric">
             <td><input type="text" name="metrics[name]" value="Medio Termino"/></td>
-            <td><input type="Number" name="metrics[porcentage]" value="20" step="1"/></td>
+            <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="20" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="metric">
             <td><input type="text" name="metrics[name]" value="Exámen 2"/></td>
-            <td><input type="Number" name="metrics[porcentage]" value="10" step="1"/></td>
+            <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="10" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="metric">
             <td><input type="text" name="metrics[name]" value="Exámen Final"/></td>
-            <td><input type="Number" name="metrics[porcentage]" value="40" step="1"/></td>
+            <td class="metric-porcentage"><input type="Number" name="metrics[porcentage]" value="40" step="1"/></td>
             <td class="metric-grade"><input type="Number" name="metrics[grade]" value="8" step="0.1"/></td>
           </tr>
           <tr class="final-grade">
             <td> Calificación Final </td>
-            <td class="total-procentage"></td>
+            <td class="total-porcentage"></td>
             <td class="final-grade-grade"></td>
           </tr>
         </tbody>
