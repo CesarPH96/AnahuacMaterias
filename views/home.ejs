@@ -1,5 +1,5 @@
 <% include ./partials/header.ejs %>
-  <title>Anahuac Materias: Inicio</title>
+  <title><%=currentUser.username%>: Inicio</title>
   <link rel="stylesheet" href="/index.css">
 <% include ./partials/middle.ejs %>
 
@@ -17,7 +17,7 @@
             <hr />
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
               <div class="btn-group" role="group">
-                <button type="submit"form="saveChanges" class="btn btn-default icon"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" alt="Guardar cambios"></span><span>Guardar</span></button>
+                <button type="submit" form="saveChanges<%=i%>" class="btn btn-default icon"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" alt="Guardar cambios"></span><span>Guardar</span></button>
               </div>
               <div class="btn-group" role="group">
                 <form action="/<%= course._id %>/edit" method="GET">
@@ -41,7 +41,7 @@
               </tr>
             </thead>
             <tbody>
-              <form id="saveChanges" action="/<%= course._id %>/g?_method=PUT" method="POST">
+              <form id="saveChanges<%=i%>" action="/<%= course._id %>/g?_method=PUT" method="POST">
                 <% course.metrics.forEach(function(metric){ %>
                   <tr class="metric">
                     <td><input type="Text" name="metrics[name]" value="<%= metric.name %>" readonly/></td>
