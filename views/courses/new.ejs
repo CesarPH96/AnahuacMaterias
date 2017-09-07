@@ -1,9 +1,11 @@
 <% include ../partials/header.ejs %>
- <title>Anahuac Materias: Materia</title>
+ <title><%=currentUser.username%>: Materias </title>
  <link rel="stylesheet" href="/courses.css">
 <% include ../partials/middle.ejs %>
 
 <div class="container container-top ">
+  <h4>Crear Materia</h4>
+  <hr>
   <div class="form-group">
     <label for="courseName">Nombre de la materia</label>
     <input type="text" class="form-control" id="courseName" placeholder="Cálculo Univariado" aria-describedby="sizing-addon2" required>
@@ -20,7 +22,7 @@
 
 
 <div class="collapse container container-course">
-    <div id="alert-porcentage" class="disable alert alert-warning  alert-dismissible" role="alert">La suma de porcentajes debe dar 100!</div>
+    <div id="alert-porcentage" class="disable alert alert-danger  alert-dismissible" role="alert">La suma de porcentajes no debe ser mayor 100!</div>
     <h4>Crear Materia</h4>
     <hr>
     <div class="form-group">
