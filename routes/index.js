@@ -97,11 +97,14 @@ router.put("/:courseId/g", isLoggedIn, function(req,res){
     fGrade +=  Number(req.body.metrics.grade[i]) * Number((req.body.metrics.porcentage[i]/100));
 
   }
+  console.log( "H: " + newMetrics);
   let newCourse = {
     metrics: newMetrics,
     finalGrade: fGrade.toFixed(2)
   };
+    console.log( "I: " +req.params.courseId);
   Course.findByIdAndUpdate(req.params.courseId, newCourse ,function(err, updatedCourse){
+    console.log( "U: " + updatedCourse);
     res.redirect("/courses");
   });
 });
