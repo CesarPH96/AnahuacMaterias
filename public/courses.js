@@ -37,7 +37,7 @@ function addMetric(){
   });
   name.innerHTML = '<input type="text" name="metrics[name]" value=' + (nameMetric.value || 'Exámen&nbsp;1')  + '>';
   porcentage.innerHTML = '<input type="Number" name="metrics[porcentage]" value=10>';
-  grade.innerHTML = '<input type="Number" name="metrics[grade]" value="8" step="0.1">';
+  grade.innerHTML = '<input type="Number" name="metrics[grade]" value="" step="0.1">';
   calculateGrade();
 }
 
@@ -65,12 +65,13 @@ function calculateGrade(){
     var childTable = grade.offsetParent.children[1].children;
     console.log("c: " + childTable.length);
     for(let i = 0; i < childTable.length-1; i++){
-      fgrade += Number(childTable[i].children[1].firstChild.value) * (Number(childTable[i].children[2].firstChild.value)/100);
+      fgrade += Number(childTable[i].children[1].firstChild.value) * (Number(childTable[i].children[2].firstChild.value));
 
       tporc += Number(porcentageMetric[i].firstChild.value);
       console.log("i: " + fgrade);
       console.log("p: " + tporc);
     }
+    fgrade /= tporc;
     grade.innerText = parseFloat(fgrade).toFixed(2);
     console.log("p: " + tporc);
     totalPorcentage.textContent = tporc;
@@ -104,7 +105,7 @@ window.addEventListener('keydown',function(e){
 },true);
 
  function checkPorcentage(){
-   if(totalPorcentage.textContent == 100){
+   if(totalPorcentage.textContent <= 100){
      return true;
 
    }else{

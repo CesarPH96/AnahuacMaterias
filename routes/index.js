@@ -87,6 +87,7 @@ router.put("/:courseId",isLoggedIn, function(req,res){
 router.put("/:courseId/g", isLoggedIn, function(req,res){
   let newMetrics = [];
   let fGrade = 0;
+  let tporc = 0;
   console.log( req.body);
   for(let i=0; i < req.body.metrics.grade.length; i++){
     newMetrics.push({
@@ -94,9 +95,10 @@ router.put("/:courseId/g", isLoggedIn, function(req,res){
       porcentage: req.body.metrics.porcentage[i],
       grade: req.body.metrics.grade[i]
     });
-    fGrade +=  Number(req.body.metrics.grade[i]) * Number((req.body.metrics.porcentage[i]/100));
-
+    fGrade +=  Number(req.body.metrics.grade[i]) * Number((req.body.metrics.porcentage[i]));
+    tporc += Number(req.body.metrics.porcentage[i]);
   }
+  fGrade /= tporc;
   console.log( "H: " + newMetrics);
   let newCourse = {
     metrics: newMetrics,

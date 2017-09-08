@@ -19,19 +19,24 @@
 
 var finalGrade = document.querySelectorAll(".final-grade-grade"),
     metricGrade = document.querySelectorAll(".metric-grade"),
-    updateCourse = document.querySelectorAll(".updateCourse");
+    updateCourse = document.querySelectorAll(".updateCourse"),
+    totalPorcentage = document.querySelectorAll(".total-porcentage");
 
 
 calculateGrade();
 function calculateGrade(){
-  finalGrade.forEach(function(grade){
+  finalGrade.forEach(function(grade,i){
     let fgrade = 0;
+    let tporc = 0;
     let childTable = grade.offsetParent.childNodes[3].childNodes;
     for(let i = 3; i<childTable.length-2; i+=2){
-      fgrade += Number(childTable[i].childNodes[3].firstChild.value) * (Number(childTable[i].childNodes[5].firstChild.value)/100);
-      console.log("i: "+fgrade);
+      fgrade += Number(childTable[i].childNodes[3].firstChild.value) * (Number(childTable[i].childNodes[5].firstChild.value));
+      console.log("i: "+ fgrade);
+      tporc += Number(childTable[i].childNodes[3].firstChild.value);
     }
+    fgrade /= tporc;
     grade.innerText = parseFloat(fgrade).toFixed(2);
+    totalPorcentage[i].textContent = tporc;
     console.log(fgrade);
   });
 
