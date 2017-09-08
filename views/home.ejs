@@ -41,7 +41,7 @@
               </tr>
             </thead>
             <tbody>
-              <form id="saveChanges<%=i%>" action="/<%= course._id %>/g?_method=PUT" method="POST">
+              <form id="saveChanges<%=i%>" action="/<%= course._id %>/g?_method=PUT" method="POST" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=,height=');">
                 <% course.metrics.forEach(function(metric){ %>
                   <tr class="metric">
                     <td><input type="Text" name="metrics[name]" value="<%= metric.name %>" readonly/></td>
@@ -61,7 +61,7 @@
     <% }); %>
     <% if (user.courses != ""){ %>
 
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-4 col-sm-6 ">
       <div class="course-title">
         <span>Calificación Final</span>
       </div>
