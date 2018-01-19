@@ -163,7 +163,6 @@ table thead tr th{
 .metric td:nth-of-type(1) > input{
   width:100%;
 }
-
 .final-grade{
   font-weight: 700;
 }

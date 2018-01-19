@@ -36,7 +36,8 @@ app.use(function(req, res, next){
   res.locals.currentUser = req.user;
   next();
 });
-//coneccion con las rutas
+
+//conexion con las rutas
 app.use('/', indexRoutes);
 
 app.listen(app.get('port'), function(){
